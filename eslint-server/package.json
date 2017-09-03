@@ -22,6 +22,7 @@
 		"@types/node": "^6.0.80"
 	},
 	"scripts": {
+		"build": "tsc -p ./src",
 		"compile": "installServerIntoExtension ../eslint ./package.json ./src/tsconfig.json && tsc -p ./src",
 		"watch": "installServerIntoExtension ../eslint ./package.json ./src/tsconfig.json && tsc --watch -p ./src"
 	}

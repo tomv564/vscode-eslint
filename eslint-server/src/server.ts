@@ -11,7 +11,8 @@ import {
 	Diagnostic, DiagnosticSeverity, Range, Files, CancellationToken,
 	TextDocuments, TextDocument, TextDocumentSyncKind, TextEdit, TextDocumentIdentifier, TextDocumentSaveReason,
 	Command, BulkRegistration, BulkUnregistration,
-	IPCMessageReader, IPCMessageWriter, WorkspaceChange,
+	// IPCMessageReader, IPCMessageWriter,
+	WorkspaceChange,
 	TextDocumentRegistrationOptions, TextDocumentChangeRegistrationOptions,
 	DidOpenTextDocumentNotification, DidChangeTextDocumentNotification, WillSaveTextDocumentWaitUntilRequest,
 	DidSaveTextDocumentNotification, DidCloseTextDocumentNotification, CodeActionRequest, VersionedTextDocumentIdentifier,
@@ -311,8 +312,8 @@ process.exit = (code?: number) => {
 		nodeExit(code);
 	}, 1000);
 }
-
-let connection: IConnection = createConnection(new IPCMessageReader(process), new IPCMessageWriter(process));
+let connection: IConnection = createConnection(process.stdin, process.stdout);
+// let connection: IConnection = createConnection(new IPCMessageReader(process), new IPCMessageWriter(process));
 let settings: Settings = null;
 let options: any = null;
 let workingDirectories: DirectoryItem[];
